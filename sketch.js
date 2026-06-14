@@ -5,7 +5,6 @@ import Wall from "./entities/Wall.js";
 
 let player;
 let walls = [];
-
 async function preloadAssets() {
 
     const playerLayers =
@@ -62,6 +61,7 @@ window.draw = function () {
     background(30);
 
     for (const wall of walls) {
+        wall.update();
         wall.draw();
     }
 

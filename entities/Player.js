@@ -1,10 +1,10 @@
 export default class Player {
 
     constructor(x, y, frames) {
-
+        this.showHitbox = true;  
+        this.showhitkey = 72; // H key
         this.x = x;
         this.y = y;
-
         // collider
         this.width = 32;
         this.height = 32;
@@ -174,6 +174,16 @@ export default class Player {
                 this.frame = 0;
             }
         }
+
+        // Toggle hitbox visibility
+
+        if (keyIsDown(this.showhitkey)) {
+            if (!this.showHitbox) {
+                this.showHitbox = true;
+            }else {
+                this.showHitbox = false;
+            }
+        }
     }
 
     draw() {
@@ -206,7 +216,7 @@ export default class Player {
         }
 
         // DEBUG COLLIDER
-
+        if(this.showHitbox){
         noFill();
         stroke(255, 0, 0);
 
@@ -215,6 +225,6 @@ export default class Player {
             this.y,
             this.width,
             this.height
-        );
+        );}
     }
 }

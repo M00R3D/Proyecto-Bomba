@@ -15,8 +15,18 @@ export default class Wall {
         this.height = height;
 
         this.frames = frames;
+        this.showHitbox = true;  
+        this.showhitkey = 72; // H key
     }
-
+    update() {
+    if (keyIsPressed && keyCode === this.showhitkey) {
+            if (!this.showHitbox) {
+                this.showHitbox = true;
+            }else {
+                this.showHitbox = false;
+            }
+        }
+    }
     draw() {
 
         if (
@@ -45,7 +55,7 @@ export default class Wall {
         }
 
         // DEBUG COLLIDER
-
+        if(this.showHitbox){
         noFill();
         stroke(0, 255, 0);
 
@@ -54,6 +64,6 @@ export default class Wall {
             this.y,
             this.width,
             this.height
-        );
+        );}
     }
 }
