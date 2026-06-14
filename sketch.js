@@ -4,13 +4,12 @@ import Player from "./entities/Player.js";
 import Wall from "./entities/Wall.js";
 
 let player;
-let wall;
+let walls = [];
 
 async function preloadAssets() {
 
     const playerLayers =
         await loadPiskel("./assets/player.piskel");
-
     const wallLayers =
         await loadPiskel("./assets/wall.piskel");
 
@@ -20,12 +19,34 @@ async function preloadAssets() {
         playerLayers[0]
     );
 
-    wall = new Wall(
-        300,
-        100,
-        64,
-        64,
-        wallLayers[0]
+    walls.push(
+        new Wall(
+            0,
+            500,
+            800,
+            100,
+            wallLayers[0]
+        )
+    );
+
+    walls.push(
+        new Wall(
+            300,
+            350,
+            200,
+            32,
+            wallLayers[0]
+        )
+    );
+
+    walls.push(
+        new Wall(
+            600,
+            200,
+            32,
+            200,
+            wallLayers[0]
+        )
     );
 }
 
@@ -40,12 +61,12 @@ window.draw = function () {
 
     background(30);
 
-    if (player) {
-        player.update();
-        player.draw();
+    for (const wall of walls) {
+        wall.draw();
     }
 
-    if (wall) {
-        wall.draw();
+    if (player) {
+        player.update(walls);
+        player.draw();
     }
 };

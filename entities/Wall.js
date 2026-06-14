@@ -1,19 +1,28 @@
 export default class Wall {
 
-    constructor(x, y, w, h, frames) {
+    constructor(
+        x,
+        y,
+        width,
+        height,
+        frames = []
+    ) {
 
         this.x = x;
         this.y = y;
 
-        this.width = w;
-        this.height = h;
+        this.width = width;
+        this.height = height;
 
-        this.frames = frames || [];
+        this.frames = frames;
     }
 
     draw() {
 
-        if (this.frames.length > 0) {
+        if (
+            this.frames &&
+            this.frames.length > 0
+        ) {
 
             image(
                 this.frames[0],
@@ -25,14 +34,26 @@ export default class Wall {
 
         } else {
 
-            fill("gray");
+            fill(120);
+
             rect(
                 this.x,
                 this.y,
                 this.width,
                 this.height
             );
-
         }
+
+        // DEBUG COLLIDER
+
+        noFill();
+        stroke(0, 255, 0);
+
+        rect(
+            this.x,
+            this.y,
+            this.width,
+            this.height
+        );
     }
 }
